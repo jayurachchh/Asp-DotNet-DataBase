@@ -1,0 +1,241 @@
+﻿@{
+    ViewData["Title"] = "Addedit Page";
+}
+    <div class="pagetitle">
+        <h1>Dashboard</h1>
+        <nav>
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="home">Home</a></li>
+            <li class="breadcrumb-item"><a asp-area="Mst_Student" asp-controller="Mst_Student" asp-action="Index">Student</a></li>
+                <li class="breadcrumb-item active">Add Student</li>
+            </ol>
+        </nav>
+    </div>
+
+    <!-- End Page Title -->
+@model database.Areas.MST_Student.Models.Mst_Student;
+@* <div class="text-danger">
+    <h4 class="display-4"><b>Add Student Page</b></h4>
+</div> *@
+<br />
+
+@* <form asp-action="Save" asp-controller="Mst_Student" asp-area="Mst_Student">
+    @Html.HiddenFor(x=>x.StudentID)
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label class="col-form-label"><span class="text-danger">*</span>Student Name</label>
+        </div>
+        <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Enter Student Name" asp-for="StudentName">
+            <span asp-validation-for="StudentName" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label for="inputState"><span class="text-danger">*</span> Branch Name</label>
+        </div>
+        <div class="col-auto">
+            <select id="inputState" class="form-control" asp-for="BranchID"
+                    asp-items="@(new SelectList(ViewBag.BranchList,"BranchID","BranchName"))">
+                <option disabled selected>Select Branch</option>
+            </select>
+            <span asp-validation-for="BranchID" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label for="inputState"><span class="text-danger">*</span> City Name</label>
+        </div>
+        <div class="col-auto">
+            <select id="inputState" class="form-control" asp-for="CityID"
+                    asp-items="@(new SelectList(ViewBag.CityList,"CityID","CityName"))">
+                <option disabled selected>Select City</option>
+            </select>
+            <span asp-validation-for="CityID" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label class="col-form-label"><span class="text-danger">*</span> Mo.No Student </label>
+        </div>
+        <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Enter Mo.No Student" asp-for="MobileNoStudent">
+            <span asp-validation-for="MobileNoStudent" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label class="col-form-label"><span class="text-danger">*</span> Email </label>
+        </div>
+        <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Enter Email" asp-for="Email">
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label class="col-form-label"><span class="text-danger">*</span> Mo.No Parents</label>
+        </div>
+        <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Enter Mo.No Parents" asp-for="MobileNoFather">
+            <span asp-validation-for="MobileNoFather" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label class="col-form-label"><span class="text-danger">*</span> Address</label>
+        </div>
+        <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Enter Address" asp-for="Address">
+            <span asp-validation-for="Address" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label class="col-form-label"><span class="text-danger">*</span> DOB  </label>
+        </div>
+        <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Enter DOB" asp-for="BirthDate">
+            <span asp-validation-for="BirthDate" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label class="col-form-label"><span class="text-danger">*</span> Age </label>
+        </div>
+        <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Enter Age" asp-for="Age">
+            <span asp-validation-for="Age" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label class="col-form-label"><span class="text-danger">*</span> Is Active </label>
+        </div>
+        <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Enter IS Active or not" asp-for="IsActive">
+            <span asp-validation-for="IsActive" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label class="col-form-label"><span class="text-danger">*</span> Gender </label>
+        </div>
+        <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Enter Gender" asp-for="Gender">
+            <span asp-validation-for="Gender" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label class="col-form-label"><span class="text-danger">*</span> Password </label>
+        </div>
+        <div class="col-auto">
+            <input type="password" class="form-control" placeholder="Enter Password" asp-for="Password">
+            <span asp-validation-for="Password" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <input type="submit" class="btn btn-primary" />
+        </div>
+    </div>
+</form> *@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Student Details Form</h5>
+
+        <!-- No Labels Form -->
+        <form class="row g-3" asp-action="Save" asp-controller="Mst_Student" asp-area="Mst_Student">
+            @Html.HiddenFor(x=>x.StudentID)
+            <div class="col-md-6">
+                <label for="inputName5" class="form-label"><span class="text-danger">*</span>Student Name</label>
+                <input type="text" class="form-control" placeholder="Enter Student Name" asp-for="StudentName">
+                <span asp-validation-for="StudentName" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label for="inputName5" class="form-label"><span class="text-danger">*</span>Email</label>
+                <input type="text" class="form-control" placeholder="Enter Email" asp-for="Email">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label for="inputName5" class="form-label"><span class="text-danger">*</span>Branch Name</label>
+                <select id="inputState" class="form-select" asp-for="BranchID"
+                        asp-items="@(new SelectList(ViewBag.BranchList,"BranchID","BranchName"))">
+                    <option selected>Select Branch</option>
+                </select>
+                <span asp-validation-for="BranchID" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label for="inputName5" class="form-label"><span class="text-danger">*</span>City Name</label>
+                <select id="inputState" class="form-select" asp-for="CityID"
+                        asp-items="@(new SelectList(ViewBag.CityList,"CityID","CityName"))">
+                    <option  selected>Select City</option>
+                </select>
+                <span asp-validation-for="CityID" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label for="inputName5" class="form-label"><span class="text-danger">*</span>Date of Birth</label>
+                <input type="text" class="form-control" placeholder="Enter DOB" asp-for="BirthDate">
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+            <div class="col-12">
+                <label for="inputName5" class="form-label"><span class="text-danger">*</span>Address</label>
+                <input type="text" class="form-control" placeholder="Enter Address" asp-for="Address">
+                <span asp-validation-for="Address" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-4">
+                <label for="inputName5" class="form-label"><span class="text-danger">*</span>Mo.No Student</label>
+                <input type="text" class="form-control" placeholder="Enter Mo.No Student" asp-for="MobileNoStudent">
+                <span asp-validation-for="MobileNoStudent" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label for="inputName5" class="form-label"><span class="text-danger">*</span>Mo.No Parents</label>
+                <input type="text" class="form-control" placeholder="Enter Mo.No Parents" asp-for="MobileNoFather">
+                <span asp-validation-for="MobileNoFather" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label for="inputName5" class="form-label"><span class="text-danger">*</span>Age</label>
+                <input type="text" class="form-control" placeholder="Enter Age" asp-for="Age">
+                <span asp-validation-for="Age" class="text-danger"></span>
+            </div>
+
+            <div class="col-md-4">
+                <label for="inputName5" class="form-label"><span class="text-danger">*</span>Is Active</label>
+                <input type="text" class="form-control" placeholder="Enter IS Active or not" asp-for="IsActive">
+                <span asp-validation-for="IsActive" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label for="inputName5" class="form-label"><span class="text-danger">*</span>Gender</label>
+                <input type="text" class="form-control" placeholder="Enter Gender" asp-for="Gender">
+                <span asp-validation-for="Gender" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label for="inputName5" class="form-label"><span class="text-danger">*</span>Password</label>
+                <input type="password" class="form-control" placeholder="Enter Password" asp-for="Password">
+                <span asp-validation-for="Password" class="text-danger"></span>
+            </div>
+          
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a class="btn btn-primary" asp-area="Mst_Student" asp-controller="Mst_Student" asp-action="Index">Back</a>
+            </div>
+        </form><!-- End No Labels Form -->
+
+    </div>
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial.cshtml" />
+}

@@ -1,0 +1,115 @@
+﻿@{
+    ViewData["Title"] = "Index Page";
+}
+    <div class="pagetitle">
+        <h1>Dashboard</h1>
+        <nav>
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="home">Home</a></li>
+                <li class="breadcrumb-item">Branch </li>
+                <li class="breadcrumb-item active">Branch List</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- End Page Title -->
+@using System.Data;
+@model DataTable;
+<div class="text-primary text-center">
+    <h1 class="display-4"><b>Branch List</b></h1>
+</div>
+<div class="row">
+    <div class="col">
+        <a type="submit" class="btn btn-primary" asp-area="MST_Branch" asp-action="MST_BranchAddedit" asp-controller="MST_Branch">Add Branch</a>
+    </div>
+</div>
+<br />
+<form class="form-inline row" role="search" asp-action="Search" asp-controller="MST_Branch" asp-area="MST_Branch">
+    <div class="col-3">
+        <input class="form-control mr-sm-2" placeholder="Enter the Search " type="text" name="searchdata">
+    </div>
+    <div class="col-3">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </div>
+</form>
+<br />
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><b>Branch List</b></h5>
+@{
+    if(Model.Rows.Count>0)
+    {
+        <table class="table datatable">
+            <thead>
+                <tr>
+                    <th scope="col">Sr.no</th>
+                    <th scope="col">Branch Name</th>
+                    <th scope="col">Branch Code</th>
+                    <th class="text-center" scope="col" colspan="2">Edit</th>
+                    <th class="text-center" scope="col" colspan="2">Delete</th>
+                    @*<th scope="col" >Created</th>
+            <th scope="col" >Modified</th>*@
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int i = 1;
+                }
+
+                @foreach (DataRow dr in Model.Rows)
+                {
+                    <tr>
+                        <td>@i</td>
+                        <td>@dr["BranchName"]</td>
+                        <td>@dr["BranchCode"]</td>
+                        <td align="right">
+                            <form method="post" asp-controller="MST_Branch" asp-action="MST_BranchAddedit">
+                                <input type="hidden" name="BranchID" value="@Convert.ToInt32(dr["BranchID"])" />
+                                <button type="submit" class="btn btn-success" onclick="return confirm('Are you sure you want to Edit : @dr["BranchName"]')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                        <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                        <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                    </svg>
+                                </button>
+                            </form>
+                        </td>
+                        <td align="left">
+                            <form method="post" asp-controller="MST_Branch" asp-action="MST_BranchDelete">
+                                <input type="hidden" name="BranchID" value="@Convert.ToInt32(dr["BranchID"])" />
+                                <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete : @dr["BranchName"]')">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill " viewBox="0 0 16 16">
+                                        <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                                    </svg>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                    i = i + 1;
+                }
+                
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <tr>
+            <td colspan="5" class="text-center">
+                <h1 class=" text-center text-danger">No Record Found</h1>
+            </td>
+        </tr>
+    }
+}
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+

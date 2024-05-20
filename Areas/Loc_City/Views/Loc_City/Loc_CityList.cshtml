@@ -1,0 +1,190 @@
+﻿@{
+    ViewData["Title"] = "Index Page";
+}
+    <div class="pagetitle">
+        <h1>Dashboard</h1>
+        <nav>
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="home">Home</a></li>
+                <li class="breadcrumb-item">City</li>
+                <li class="breadcrumb-item active">City List</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- End Page Title -->
+@using System.Data;
+@model DataTable;
+
+<div class="text-primary text-center">
+    <h1 class="display-4"><b>City List</b></h1>
+</div>
+<div class="row">
+    <div class="col">
+        <a type="submit" class="btn btn-primary" asp-area="Loc_City" asp-action="Loc_CityAddedit" asp-controller="Loc_City">Add City</a>
+    </div>
+</div>
+@* <div class="row">
+    <div class="col">
+        <a type="button" class="btn btn-primary" asp-area="Loc_City" asp-action="Loc_CityAddedit" asp-controller="Loc_City">Add City</a>
+    </div>
+</div> *@
+<br />
+<form class="form-inline row" role="search" asp-action="Search" asp-controller="Loc_City" asp-area="Loc_City">
+    <div class="col-3">
+        <select id="CountryID" name="CountryID" class="form-select"
+                asp-items="@(new SelectList(ViewBag.CountryList,"CountryID","CountryName"))"
+                onchange="(stateChange())">
+            <option selected>Select Country</option>
+        </select>
+    </div>
+    <div class="col-3">
+        <select id="StateID" name="StateID" class="form-select"
+                asp-items="@(new SelectList(ViewBag.StateList,"StateID","StateName"))">
+            <option class="form-group">Select State</option>
+        </select>
+    </div>
+  @*   <div class="col-3">
+        <input class="form-control mr-sm-2 " placeholder="Enter the Country Name" type="text" name="CountryName">
+    </div>
+    <div class="col-3">
+        <input class="form-control mr-sm-2" type="text" placeholder="Enter the State Name" name="StateName">
+    </div> *@
+    <div class="col-3">
+        <input class="form-control mr-sm-2" type="text" placeholder="Enter the City Name" name="CityName">
+    </div>
+    <div class="col-3">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </div>
+</form>
+<br />
+<section class="section">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title"><b>City List</b></h5>
+@{
+    if(Model.Rows.Count>0)
+    {
+        <table class="table datatable">
+            <thead>
+                <tr>
+                    <th scope="col">Sr.no</th>
+                    <th scope="col">Country Name</th>
+                    <th scope="col">State Name</th>
+                    <th scope="col">City Name</th>
+                    <th scope="col">City Code</th>
+                    <th class="text-center" scope="col" colspan="2">Edit</th>
+                    <th class="text-center" scope="col" colspan="2">Delete</th>
+                    @*<th scope="col" >Created</th>
+            <th scope="col" >Modified</th>*@
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    int i = 1;
+                }
+                @{
+                    if (Model.Rows.Count > 0)
+                    {
+                        @foreach (DataRow dr in Model.Rows)
+                        {
+                            <tr>
+                                <td>@i</td>                             
+                                <td>@dr["CountryName"]</td>
+                                <td>@dr["StateName"]</td>
+                                <td>@dr["CityName"]</td>
+                                <td>@dr["Citycode"]</td>
+                                <td align="right">
+                                    <form method="post" asp-controller="Loc_City" asp-action="Loc_CityAddedit">
+                                        <input type="hidden" name="CityID" value="@Convert.ToInt32(dr["CityID"])" />
+                                        <button type="submit" class="btn btn-success" onclick="return confirm('Are you sure you want to Edit : @dr["CityName"]')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                                                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                                                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                                            </svg>
+                                        </button>
+                                    </form>
+
+                                </td>
+                                <td align="left">
+                                    <form method="post" asp-controller="Loc_City" asp-action="Loc_CityDelete">
+                                        <input type="hidden" name="CityID" value="@Convert.ToInt32(dr["CityID"])" />
+                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete : @dr["CityName"]')">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill " viewBox="0 0 16 16">
+                                                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
+                                            </svg>
+                                        </button>
+                                    </form>
+                                </td>
+                               
+                            </tr>
+                            i = i + 1;
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="5" class="text-center">
+                                <p class="col-form-label">No Record Found</p>
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <tr>
+            <td colspan="5" class="text-center">
+                <h1 class=" text-center text-danger">No Record Found</h1>
+            </td>
+        </tr>
+    }
+}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts
+    {
+    <script>
+        function stateChange() {
+
+            var CountryID = $("#CountryID").val();
+            console.log($("#CountryID").val());
+
+            if (CountryID !== "") {
+                $("#StateID").empty();
+                $("#StateID").append($("<option></option>").val("").html("Select State"));
+                $.ajax(
+                    {
+                        type: "POST",
+                        contentType: "application/json; charset=utf-8",
+                        url: "@Url.Action("DropDownByCountry","Loc_City")" + "?&CountryID=" + CountryID,
+                        data: {},
+                        dataType: "json",
+                        success: function (Result) {
+                            $.each(Result,
+                                function (key, value) {
+                                    $("#StateID").append($("<option></option>").val(value.stateID).html(value.stateName));
+                                });
+                        },
+                        error: function (r) {
+                            alert("Error while loading combobox.");
+                        }
+                    });
+            } else {
+                $("#StateID").empty();
+                $("#StateID").append($("<option></option>").val("").html("Select State"));
+            }
+        }
+    </script>
+    @{
+        Html.Partial("_ValidationScriptsPartial.cshtml");
+    }
+}
+

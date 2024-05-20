@@ -1,0 +1,78 @@
+﻿@{
+    ViewData["Title"] = "Addedit Page";
+}
+    <div class="pagetitle">
+        <h1>Dashboard</h1>
+        <nav>
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="home">Home</a></li>
+            <li class="breadcrumb-item"><a asp-area="MST_Branch" asp-controller="MST_Branch" asp-action="Index">Branch</a></li>
+                <li class="breadcrumb-item active">Add Branch</li>
+            </ol>
+        </nav>
+    </div>
+    <!-- End Page Title -->
+@model database.Areas.MST_Branch.Models.Mst_BranchModel;
+@* <div class="text-danger">
+    <h4 class="display-4"><b>Add Branch Page</b></h4>
+</div>
+<br />
+<form asp-action="Save" asp-controller="MST_Branch" asp-area="MST_Branch">
+    @Html.HiddenFor(x=>x.BranchID)
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label class="col-form-label"><span class="text-danger">*</span>Branch Name</label>
+        </div>
+        <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Enter Branch Name" asp-for="BranchName">
+            <span asp-validation-for="BranchName" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label class="col-form-label"><span class="text-danger">*</span> Branch Code</label>
+        </div>
+        <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Enter Branch Code" asp-for="BranchCode">
+            <span asp-validation-for="BranchCode" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <input type="submit" class="btn btn-primary" />
+        </div>
+    </div>
+</form> *@
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Branch Details Form</h5>
+
+        <!-- No Labels Form -->
+        <form class="row g-3" asp-action="Save" asp-controller="MST_Branch" asp-area="MST_Branch">
+            @Html.HiddenFor(x=>x.BranchID)
+            <div class="col-md-6">
+                <label for="inputName5" class="form-label"><span class="text-danger">*</span>Branch Name</label>
+                <input type="text" class="form-control" placeholder="Enter Branch Name" asp-for="BranchName">
+                <span asp-validation-for="BranchName" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label for="inputName5" class="form-label"><span class="text-danger">*</span> Branch Code</label>
+                <input type="text" class="form-control" placeholder="Enter Branch Code" asp-for="BranchCode">
+                <span asp-validation-for="BranchCode" class="text-danger"></span>
+            </div>
+
+            <div class="text-center">
+                <br />
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a class="btn btn-primary" asp-area="MST_Branch" asp-controller="MST_Branch" asp-action="Index">Back</a>
+                
+            </div>
+        </form><!-- End No Labels Form -->
+
+    </div>
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial.cshtml" />
+}

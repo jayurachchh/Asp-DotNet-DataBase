@@ -1,0 +1,81 @@
+﻿@{
+    ViewData["Title"] = "Addedit Page";
+}
+<div class="pagetitle">
+    <h1>Dashboard</h1>
+    <nav>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="home">Home</a></li>
+            <li class="breadcrumb-item"><a asp-area="Loc_Country" asp-controller="Loc_Country" asp-action="Index">Country</a></li>
+            <li class="breadcrumb-item active">Add  Country </li>
+        </ol>
+    </nav>
+</div><!-- End Page Title -->
+@model database.Areas.Loc_Country.Models.Loc_CountryModel;
+
+@* 
+<div class="text-danger">
+    <h4  class="display-4"><b>Add Country Page</b></h4>
+</div>
+<br />
+<form asp-action="Save" asp-controller="Loc_Country" asp-area="Loc_Country">
+    @Html.HiddenFor(x=>x.CountryID)
+<div class="row g-3 align-items-center">
+    <div class="col-auto">
+        <label class="col-form-label"><span class="text-danger">*</span>Country Name</label>
+    </div>
+    <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Enter Country Name" asp-for="CountryName">
+            <span asp-validation-for="CountryName" class="text-danger"></span>
+    </div>
+</div>
+<br/>
+<div class="row g-3 align-items-center">
+    <div class="col-auto">
+            <label class="col-form-label"><span class="text-danger">*</span> Country Code</label>
+    </div>
+    <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Enter Country Code" asp-for="CountryCode">
+            <span asp-validation-for="CountryCode" class="text-danger"></span>
+    </div>
+</div>
+<br/>
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <input type="submit" class="btn btn-primary"/>
+        </div>
+    </div>
+</form> *@
+
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">Country Details Form</h5>
+
+        <!-- No Labels Form -->
+        <form class="row g-3" asp-action="Save" asp-controller="Loc_Country" asp-area="Loc_Country">
+            @Html.HiddenFor(x=>x.CountryID)
+            <div class="col-md-6">
+                <label for="inputName5" class="form-label"><span class="text-danger">*</span>Country Name</label>
+                <input type="text" class="form-control" placeholder="Enter Country Name" asp-for="CountryName">
+                <span asp-validation-for="CountryName" class="text-danger"></span>
+            </div>
+            <div class="col-md-6">
+                <label for="inputName5" class="form-label"><span class="text-danger">*</span>Country Code</label>
+                <input type="text" class="form-control" placeholder="Enter Country Code" asp-for="CountryCode">
+                <span asp-validation-for="CountryCode" class="text-danger"></span>
+            </div>
+            
+            <div class="text-center">
+                <br />
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a asp-area="Loc_Country" asp-controller="Loc_Country" asp-action="Index" class="btn btn-primary">Back</a>
+               
+            </div>
+        </form><!-- End No Labels Form -->
+
+    </div>
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial.cshtml" />
+}

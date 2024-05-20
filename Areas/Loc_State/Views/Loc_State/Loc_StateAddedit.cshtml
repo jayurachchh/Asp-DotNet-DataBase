@@ -1,0 +1,101 @@
+﻿@{
+    ViewData["Title"] = "Addedit Page";
+}
+    <div class="pagetitle">
+        <h1>Dashboard</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a asp-area="" asp-controller="Home" asp-action="home">Home</a></li>
+            <li class="breadcrumb-item"><a asp-area="Loc_State" asp-controller="Loc_State" asp-action="Index">State</a></li>
+                <li class="breadcrumb-item active">Add State</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+@model database.Areas.Loc_State.Models.Loc_StateModel;
+@* <div class="text-danger">
+    <h4 class="display-4"><b>Add State Page</b></h4>
+</div>
+<br /> *@
+@* <form asp-action="Save" asp-controller="Loc_State" asp-area="Loc_State">
+    @Html.HiddenFor(x=>x.StateID)
+
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label for="inputState"><span class="text-danger">*</span> Country Name</label>
+        </div>
+        <div class="col-auto">
+            <select id="inputState" class="form-control" asp-for="CountryID"
+                    asp-items="@(new SelectList(ViewBag.CountryList,"CountryID","CountryName"))">
+                <option disabled selected>Select Country</option>
+            </select>
+            <span asp-validation-for="CountryID" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+                <label class="col-form-label" for="inputState"><span class="text-danger">*</span>State Name</label>
+        </div>
+        <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Enter State Name" asp-for="StateName">
+            <span asp-validation-for="StateName" class="text-danger"></span>
+        </div>
+    </div>
+   
+    <br />
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <label class="col-form-label for="inputState"><span class="text-danger">*</span>State Code</label>
+        </div>
+        <div class="col-auto">
+            <input type="text" class="form-control" placeholder="Enter State Code" asp-for="StateCode">
+            <span asp-validation-for="StateCode" class="text-danger"></span>
+        </div>
+    </div>
+    <br />
+    <div class="row g-3 align-items-center">
+        <div class="col-auto">
+            <input type="submit" class="btn btn-primary" />
+        </div>
+    </div>
+</form> *@
+
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">State Details Form</h5>
+
+        <!-- No Labels Form -->
+        <form class="row g-3" asp-action="Save" asp-controller="Loc_State" asp-area="Loc_State">
+            @Html.HiddenFor(x=>x.StateID)
+            <div class="col-md-4">
+                <label for="inputName5" class="form-label"><span class="text-danger">*</span>Country Name</label>
+                <select id="inputState" class="form-select" asp-for="CountryID"
+                        asp-items="@(new SelectList(ViewBag.CountryList,"CountryID","CountryName"))">
+                    <option selected>Select Country</option>
+                </select>
+                <span asp-validation-for="CountryID" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label for="inputName5" class="form-label"><span class="text-danger">*</span>State Name</label>
+                <input type="text" class="form-control" placeholder="Enter State Name" asp-for="StateName">
+                <span asp-validation-for="StateName" class="text-danger"></span>
+            </div>
+            <div class="col-md-4">
+                <label for="inputName5" class="form-label"><span class="text-danger">*</span>State Code</label>
+                <input type="text" class="form-control" placeholder="Enter State Code" asp-for="StateCode">
+                <span asp-validation-for="StateCode" class="text-danger"></span>
+            </div>
+
+            <div class="text-center">
+                <br />
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <a class="btn btn-primary" asp-area="Loc_State" asp-controller="Loc_State" asp-action="Index">Back</a>
+            </div>
+        </form><!-- End No Labels Form -->
+
+    </div>
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial.cshtml" />
+}
